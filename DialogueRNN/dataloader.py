@@ -144,6 +144,7 @@ class PcoriEmotionDataset(Dataset):
 
         return torch.LongTensor(self.InputSequence[conv]), \
                torch.FloatTensor([[1, 0] if x == '0' else [0, 1] for x in self.Speakers[conv]]), \
+               torch.FloatTensor([1] * len(self.EmotionLabels[conv])), \
                torch.LongTensor(self.EmotionLabels[conv]), \
                self.InputMaxSequenceLength[conv], \
                conv
@@ -208,5 +209,5 @@ class PcoriEmotionPadCollate:
 
         return [self.pad_collate(dat[i]).transpose(1, 0).contiguous() if i == 0 else \
                     pad_sequence(dat[i]) if i == 1 else \
-                        pad_sequence(dat[i], True) if i < 5 else \
+                        pad_sequence(dat[i], True) if i < 4 else \
                             dat[i].tolist() for i in dat]

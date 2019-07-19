@@ -37,7 +37,7 @@ def get_PcoriEmotion_loaders(path, batch_size=32, num_workers=0, pin_memory=Fals
 
 def process_data_loader(data):
     
-    input_sequence, qmask, umask, act_labels, emotion_labels, max_sequence_lengths, _ = data
+    input_sequence, qmask, umask, emotion_labels, max_sequence_lengths, _ = data
     input_sequence = input_sequence[:, :, :max(max_sequence_lengths)]
     
     input_sequence, qmask, umask = input_sequence.cuda(), qmask.cuda(), umask.cuda()
