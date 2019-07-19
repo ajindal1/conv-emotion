@@ -145,7 +145,7 @@ if __name__ == '__main__':
         writer = SummaryWriter()
 
     batch_size = args.batch_size
-    n_classes  = 7
+    n_classes  = 3
     cuda       = args.cuda
     n_epochs   = args.epochs
     
@@ -161,7 +161,7 @@ if __name__ == '__main__':
     glv_pretrained = np.load(open('pcori/glv_embedding_matrix', 'rb'))
     vocab_size, embedding_dim = glv_pretrained.shape
     # glv_pretrained[0, :] = np.random.rand(embedding_dim)
-    model = PcoriEmotionModel(D_m, D_g, D_p, D_e, D_h, vocab_size=vocab_size, n_classes=7,
+    model = PcoriEmotionModel(D_m, D_g, D_p, D_e, D_h, vocab_size=vocab_size, n_classes=n_classes,
                                embedding_dim=embedding_dim,
                                cnn_output_size=args.cnn_output_size,
                                cnn_filters=args.cnn_filters, 
