@@ -176,7 +176,7 @@ if __name__ == '__main__':
         model.cuda()
         
         
-    loss_weights = torch.FloatTensor([1,1,1,1,1,1,1])
+    loss_weights = torch.FloatTensor([1]*n_classes)
     if args.class_weight:
         loss_function  = MaskedNLLLoss(loss_weights.cuda() if cuda else loss_weights)
     else:
